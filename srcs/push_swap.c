@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:28:50 by skhali            #+#    #+#             */
-/*   Updated: 2022/05/16 06:08:18 by marvin           ###   ########.fr       */
+/*   Updated: 2022/05/16 18:18:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,29 @@
 
 void	three_sort(t_stack **s_a)
 {
-    t_stack *first;
-    t_stack *second;
-    t_stack *third;
+    int first;
+    int second;
+    int third;
 
-    first = *s_a;
-    second = (*s_a)->next;
-    third = (*s_a)->next->next;
+    first = (*s_a)->value;
+    second = (*s_a)->next->value;
+    third = (*s_a)->next->next->value;
 
-    if((first-> value > second->value) && (second->value < third->value) 
-        && (first->value < third->value))
+    if((first > second) && (second < third) && (first < third))
         swap_a(s_a);
-    else if ((first-> value > second->value) && (second->value > third->value) 
-        && (first->value > third->value))
+    else if ((first > second) && (second > third) && (first > third))
     {
         swap_a(s_a);
         rrotate_a(s_a);
     }
-    else if((first-> value > second->value) && (second->value < third->value) 
-        && (first->value > third->value))
+    else if((first > second) && (second < third) && (first > third))
         rotate_a(s_a);
-    else if((first-> value < second->value) && (second->value > third->value) 
-        && (first->value < third->value))
+    else if((first < second) && (second > third) && (first < third))
     {
         swap_a(s_a);
         rotate_a(s_a);
     }
-    else
+    else if((first < second) && (second > third) && (first > third))
         rrotate_a(s_a);
 }
 

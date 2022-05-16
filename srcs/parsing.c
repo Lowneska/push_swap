@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 01:04:24 by skhali            #+#    #+#             */
-/*   Updated: 2022/05/15 23:57:23 by marvin           ###   ########.fr       */
+/*   Updated: 2022/05/16 18:27:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,20 @@ t_stack	*parsing(char **argv, int argc)
 	t_stack	*stack;
 	char **str;
 	stack = NULL;
+	str = NULL;
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
 	else if (argc == 2){
 		str = ft_split(argv[1], ' ');
+		if(!*str)
+		{
+			ft_putstr_fd("Error\n", 2);
+        	exit(EXIT_FAILURE);
+		}
 		stack = ft_init_lst(str);
 		free_split(str);
 	}
 	else
 		stack = ft_init_lst(++argv);
-
 	return (stack);
 }
